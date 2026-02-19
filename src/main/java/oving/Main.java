@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application {
 
   @Override
   public void start(Stage stage) {
@@ -16,8 +16,9 @@ public class Main extends Application{
     stage.show();
   }
 
-
   public static void main(String[] args) {
+    DeckOfCards deck = new DeckOfCards();
+    System.out.println(deck.toString());
     launch(args);
   }
 }
