@@ -10,8 +10,8 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
 
-    VBox root = new VBox();
-    Scene scene = new Scene(root);
+    PlayingCard test = new PlayingCard('C', 13);
+    Scene scene = new Scene(test.getDisplayObject());
     stage.setScene(scene);
     stage.show();
   }
