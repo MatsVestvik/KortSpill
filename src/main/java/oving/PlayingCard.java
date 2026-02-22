@@ -52,9 +52,7 @@ public class PlayingCard {
     this.suit = suit;
     this.face = face;
 
-    ImageView background = new ImageView(new Image("card.png"));
-    background.setFitHeight(scale * 35);
-    background.setFitWidth(scale * 25);
+    ImageView background = new ImageView(new Image("card.png", scale * 25, scale * 35, true, false));
 
     // Top-left number
     HBox numberTopLeft = Numbers.getNumber(face, scale);
@@ -67,9 +65,7 @@ public class PlayingCard {
     StackPane.setAlignment(numberBottomRight, Pos.BOTTOM_RIGHT);
     StackPane.setMargin(numberBottomRight, new Insets(0, 1, 1, 0));
 
-    ImageView symbol = new ImageView(new Image("symbol/" + suit + ".png"));
-    symbol.setFitHeight(scale * 11);
-    symbol.setFitWidth(scale * 11);
+    ImageView symbol = new ImageView(new Image("symbol/" + suit + ".png", scale * 11, scale * 11, true, false));
 
     StackPane stackPane = new StackPane();
     stackPane.setPrefSize(scale * 25, scale * 35);
