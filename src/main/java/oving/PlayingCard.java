@@ -11,16 +11,18 @@ import java.util.Stack;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class PlayingCard {
 
   private final char suit; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
   private final int face; // a number between 1 and 13
-  private final StackPane displayObject;
+  private final HBox displayObject;
 
   /**
    * Creates an instance of a PlayingCard with a given suit and face.
@@ -68,11 +70,17 @@ public class PlayingCard {
     ImageView symbol = new ImageView(new Image("symbol/" + suit + ".png", scale * 11, scale * 11, true, false));
 
     StackPane stackPane = new StackPane();
-    stackPane.setPrefSize(scale * 25, scale * 35);
-    stackPane.setMaxSize(scale * 25, scale * 35);
     stackPane.getChildren().addAll(background, numberTopLeft, numberBottomRight, symbol);
 
-    this.displayObject = stackPane;
+    VBox firstWrapper = new VBox();
+    firstWrapper.getChildren().add(stackPane);
+    firstWrapper.setPrefSize(scale * 25, scale * 35);
+
+    HBox wrapper = new HBox();
+    wrapper.getChildren().add(firstWrapper);
+    wrapper.setPrefSize(scale * 25, scale * 35);
+
+    this.displayObject = wrapper;
   }
 
   /**
@@ -127,7 +135,7 @@ public class PlayingCard {
   public void createDisplayObject() {
   }
 
-  public StackPane getDisplayObject() {
+  public HBox getDisplayObject() {
     return this.displayObject;
 
   }
