@@ -3,14 +3,15 @@ package oving;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.sun.javafx.PlatformUtil;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class DeckOfCards {
 
   private ArrayList<PlayingCard> deck;
   private final char[] suit = { 'S', 'H', 'D', 'C' };
+  private ImageView back;
 
   public DeckOfCards() {
     deck = new ArrayList<>();
@@ -21,6 +22,7 @@ public class DeckOfCards {
       deck.add(newCard);
     }
 
+    createBack();
   }
 
   @Override
@@ -62,5 +64,14 @@ public class DeckOfCards {
 
   public void shuffle() {
     Collections.shuffle(deck);
+  }
+
+  public void createBack() {
+    int scale = 5;
+    this.back = new ImageView(new Image("back.png", scale * 25, scale * 35, true, false));
+  }
+
+  public ImageView getBack() {
+    return this.back;
   }
 }

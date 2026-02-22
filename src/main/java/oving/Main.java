@@ -10,9 +10,9 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
 
-    DeckOfCards deckOfCards = new DeckOfCards();
-    deckOfCards.shuffle();
-    Scene scene = new Scene(deckOfCards.getAllCards());
+    DeckOfCards deck = new DeckOfCards();
+    Game game = new Game(deck);
+    Scene scene = new Scene(game.getElements());
     stage.setScene(scene);
     stage.show();
   }

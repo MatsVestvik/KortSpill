@@ -1,5 +1,8 @@
 package oving;
 
+import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
+
 public class Game {
 
   private DeckOfCards deck;
@@ -10,10 +13,33 @@ public class Game {
     this.deck = deck;
     this.hand = new Hand();
 
-    V
+    createElements();
+  }
+
+  private void createElements() {
+    elements = new VBox();
+    ImageView back = deck.getBack();
+    back.setOnMouseClicked(e -> {
+      drawCard();
+    });
+
+    elements.getChildren().addAll(hand.getDisplayObject(), back);
+
   }
 
   public void drawCard() {
     hand.addCard(deck.draw());
+  }
+
+  public DeckOfCards getDeck() {
+    return deck;
+  }
+
+  public Hand getHand() {
+    return hand;
+  }
+
+  public VBox getElements() {
+    return elements;
   }
 }

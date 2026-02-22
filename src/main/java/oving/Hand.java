@@ -12,13 +12,14 @@ public class Hand {
 
   public Hand() {
     cards = new ArrayList<>();
+    displayObject = new HBox();
     calculateScore();
     updateHandVisual();
   }
 
   public void updateHandVisual() {
+    displayObject.getChildren().clear();
     for (PlayingCard card : cards) {
-      displayObject.getChildren().clear();
       displayObject.getChildren().add(card.getDisplayObject());
     }
   }
