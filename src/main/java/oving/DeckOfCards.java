@@ -1,6 +1,7 @@
 package oving;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.sun.javafx.PlatformUtil;
 
@@ -48,5 +49,18 @@ public class DeckOfCards {
       }
     }
     return grid;
+  }
+
+  public PlayingCard draw() {
+
+    PlayingCard first;
+    first = deck.getFirst();
+    deck.remove(0);
+
+    return first;
+  }
+
+  public void shuffle() {
+    Collections.shuffle(deck);
   }
 }
