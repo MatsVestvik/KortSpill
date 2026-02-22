@@ -11,6 +11,7 @@ public class Main extends Application {
   public void start(Stage stage) {
 
     DeckOfCards deck = new DeckOfCards();
+    deck.shuffle();
     Game game = new Game(deck);
     Scene scene = new Scene(game.getElements());
     stage.setScene(scene);

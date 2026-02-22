@@ -23,7 +23,7 @@ public class Game {
       drawCard();
     });
 
-    elements.getChildren().addAll(hand.getDisplayObject(), back);
+    elements.getChildren().addAll(back, hand.getDisplayObject(), hand.getScoreVisual());
 
   }
 
