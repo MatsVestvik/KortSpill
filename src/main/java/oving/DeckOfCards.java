@@ -2,6 +2,10 @@ package oving;
 
 import java.util.ArrayList;
 
+import com.sun.javafx.PlatformUtil;
+
+import javafx.scene.layout.GridPane;
+
 public class DeckOfCards {
 
   private ArrayList<PlayingCard> deck;
@@ -26,5 +30,23 @@ public class DeckOfCards {
       sb.append(card.getSuit() + "\n");
     }
     return sb.toString();
+  }
+
+  public GridPane getAllCards() {
+    int col = 0;
+    int row = 0;
+
+    GridPane grid = new GridPane();
+
+    for (PlayingCard card : deck) {
+      grid.add(card.getDisplayObject(), col, row);
+      col++;
+
+      if (col >= 13) {
+        col = 0;
+        row++;
+      }
+    }
+    return grid;
   }
 }
