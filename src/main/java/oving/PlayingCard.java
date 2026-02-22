@@ -9,6 +9,8 @@ package oving;
 
 import java.util.Stack;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -38,6 +40,7 @@ public class PlayingCard {
    * @throws IllegalArgumentException if suit or face have invalid values.
    */
   public PlayingCard(char suit, int face) {
+    int scale = 5;
     if (suit != 'H' && suit != 'D' && suit != 'C' && suit != 'S') {
       throw new IllegalArgumentException("Parameter suit must be one of H, D, C or S");
     }
@@ -50,11 +53,28 @@ public class PlayingCard {
     this.face = face;
 
     ImageView background = new ImageView(new Image("card.png"));
-    HBox number = Numbers.getNumber(face);
+    background.setFitHeight(scale * 35);
+    background.setFitWidth(scale * 25);
+
+    // Top-left number
+    HBox numberTopLeft = Numbers.getNumber(face, scale);
+    StackPane.setAlignment(numberTopLeft, Pos.TOP_LEFT);
+    StackPane.setMargin(numberTopLeft, new Insets(1, 0, 0, 1));
+
+    // Bottom-right number (rotated 180 degrees)
+    HBox numberBottomRight = Numbers.getNumber(face, scale);
+    numberBottomRight.setRotate(180);
+    StackPane.setAlignment(numberBottomRight, Pos.BOTTOM_RIGHT);
+    StackPane.setMargin(numberBottomRight, new Insets(0, 1, 1, 0));
+
     ImageView symbol = new ImageView(new Image("symbol/" + suit + ".png"));
+    symbol.setFitHeight(scale * 11);
+    symbol.setFitWidth(scale * 11);
 
     StackPane stackPane = new StackPane();
-    stackPane.getChildren().addAll(background, number, symbol);
+    stackPane.setPrefSize(scale * 25, scale * 35);
+    stackPane.setMaxSize(scale * 25, scale * 35);
+    stackPane.getChildren().addAll(background, numberTopLeft, numberBottomRight, symbol);
 
     this.displayObject = stackPane;
   }
