@@ -13,7 +13,6 @@ public class Card implements Display {
   public Card(int face, char suit) {
     setFace(face);
     setSuit(suit);
-
   }
 
   public void setFace(int face) {
@@ -29,6 +28,14 @@ public class Card implements Display {
       throw new IllegalArgumentException("sutit must be real");
     }
     this.suit = suit;
+  }
+
+  public int getFace() {
+    return face;
+  }
+
+  public char getSuit() {
+    return suit;
   }
 
   @Override
