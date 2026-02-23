@@ -1,6 +1,7 @@
 package oving;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javafx.scene.layout.GridPane;
 
@@ -18,6 +19,14 @@ public class Deck implements Display {
 
   public ArrayList<Card> getCards() {
     return cards;
+  }
+
+  public Card draw() {
+    return cards.getFirst();
+  }
+
+  public void shuflle() {
+    Collections.shuffle(cards);
   }
 
   @Override

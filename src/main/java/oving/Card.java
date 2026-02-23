@@ -25,6 +25,7 @@ public class Card implements Display {
   public Card(int face, char suit) {
     setFace(face);
     setSuit(suit);
+    createDisplayObject(5);
   }
 
   public void setFace(int face) {

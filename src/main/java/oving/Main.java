@@ -13,6 +13,8 @@ public class Main extends Application {
     Card card = new Card(11, 'C');
     card.createDisplayObject(5);
     Scene scene = new Scene(card.getDisplayObject());
+    StartScreen startScreen = new StartScreen(scene);
+    startScreen.runScene();
     stage.setScene(scene);
     stage.show();
   }
