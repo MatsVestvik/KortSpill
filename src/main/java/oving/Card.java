@@ -3,11 +3,32 @@ package oving;
 import javafx.scene.layout.GridPane;
 
 public class Card implements Display {
+
+  private int face;
+  private char suit;
+
   private GridPane displayObject;
   private GridPane hoverDisplayObject;
 
-  public Card() {
+  public Card(int face, char suit) {
+    setFace(face);
+    setSuit(suit);
 
+  }
+
+  public void setFace(int face) {
+    if (face <= 13 && face > 0) {
+      this.face = face;
+    } else {
+      throw new IllegalArgumentException("face must be true value");
+    }
+  }
+
+  public void setSuit(char suit) {
+    if (suit != 'C' || suit != 'D' || suit != 'H' || suit != 'S') {
+      throw new IllegalArgumentException("sutit must be real");
+    }
+    this.suit = suit;
   }
 
   @Override

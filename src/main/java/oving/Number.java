@@ -22,6 +22,7 @@ public class Number {
               new Image("numbers/" + digit + ".png", 5 * scale, 7 * scale, true, false)));
     }
 
+    hbox.setSpacing(scale);
     return hbox;
 
   }
