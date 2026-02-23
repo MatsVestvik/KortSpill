@@ -53,6 +53,17 @@ public class DeckOfCards {
     return grid;
   }
 
+  public ArrayList<PlayingCard> getCardsOfSuit(char suit) {
+    ArrayList<PlayingCard> suitedDeck = new ArrayList<>();
+    for (PlayingCard card : deck) {
+      if (card.getSuit() == suit) {
+        suitedDeck.add(card);
+      }
+    }
+    return suitedDeck;
+
+  }
+
   public PlayingCard draw() {
 
     PlayingCard first;
