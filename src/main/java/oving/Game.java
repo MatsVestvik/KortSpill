@@ -44,6 +44,9 @@ public class Game {
       items.getChildren().addAll(remainingCardsGrid, back);
       scene.setRoot(items);
     });
+    back.setOnAction(e -> {
+      scene.setRoot(elements);
+    });
     stage.setScene(scene);
     stage.show();
   }
