@@ -1,6 +1,10 @@
 package oving;
 
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 public class Game {
@@ -10,17 +14,36 @@ public class Game {
   private VBox elements;
   private ImageView deckStack;
 
-  public Game(DeckOfCards deck) {
+  private GridPane remainingCardsGrid;
+  private Scene scene;
+
+  private Button view;
+
+  public Game(DeckOfCards deck, Stage stage) {
     this.deck = deck;
     this.hand = new Hand();
     deckStack = deck.getBack();
 
     elements = new VBox();
-    elements.getChildren().addAll(deckStack, hand.getDisplayObject(), hand.getScoreVisual());
+    elements.getChildren().addAll(deckStack, hand.getDisplayObject(), hand.getScoreVisual(), view);
     deckStack.setOnMouseClicked(e -> {
       hand.clearHand();
       hand.addFiveCards(deck.drawFive());
     });
+
+    scene = new Scene(elements);
+    RemainingCards remainingCards = new RemainingCards();
+    view = remainingCards.getViewButton();
+    view.setOnAction(e -> {
+      remainingCardsGrid = remainingCards.createGridPane(deck);
+      scene.setRoot(remainingCardsGrid);
+    });
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  public GridPane getRemainingCardsGrid() {
+    return remainingCardsGrid;
   }
 
   public void drawCard() {

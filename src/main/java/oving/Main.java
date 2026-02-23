@@ -12,10 +12,7 @@ public class Main extends Application {
 
     DeckOfCards deck = new DeckOfCards();
     deck.shuffle();
-    Game game = new Game(deck);
-    Scene scene = new Scene(game.getElements());
-    stage.setScene(scene);
-    stage.show();
+    Game game = new Game(deck, stage);
   }
 
   public static void main(String[] args) {

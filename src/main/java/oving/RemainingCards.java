@@ -2,17 +2,21 @@ package oving;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 public class RemainingCards {
-  private DeckOfCards deck;
+  private Button view;
+  private Button back;
 
-  public RemainingCards(DeckOfCards deck) {
-    this.deck = deck;
+  public RemainingCards() {
+
+    view = new Button("view");
+    back = new Button("back");
 
   }
 
-  public GridPane createGridPane() {
+  public GridPane createGridPane(DeckOfCards deck) {
     GridPane grid = new GridPane();
     char[] suits = deck.getSuits();
     int col = 0;
@@ -28,4 +32,13 @@ public class RemainingCards {
     }
     return grid;
   }
+
+  public Button getViewButton() {
+    return view;
+  }
+
+  public Button getBackButton() {
+    return back;
+  }
+
 }
