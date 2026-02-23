@@ -53,6 +53,10 @@ public class DeckOfCards {
     return grid;
   }
 
+  public char[] getSuits() {
+    return suit;
+  }
+
   public ArrayList<PlayingCard> getCardsOfSuit(char suit) {
     ArrayList<PlayingCard> suitedDeck = new ArrayList<>();
     for (PlayingCard card : deck) {
@@ -61,7 +65,6 @@ public class DeckOfCards {
       }
     }
     return suitedDeck;
-
   }
 
   public PlayingCard draw() {

@@ -1,5 +1,7 @@
 package oving;
 
+import java.util.ArrayList;
+
 import javafx.scene.layout.GridPane;
 
 public class RemainingCards {
@@ -10,12 +12,19 @@ public class RemainingCards {
 
   }
 
-  public GridPane createGridPane(){
+  public GridPane createGridPane() {
     GridPane grid = new GridPane();
-    for (PlayingCard card : deck){
-    for (PlayingCard card : suitedDeck) {
-    }
-      
+    char[] suits = deck.getSuits();
+    int col = 0;
+    int row = 0;
+    for (char suit : suits) {
+      ArrayList<PlayingCard> suitedDeck = deck.getCardsOfSuit(suit);
+      for (PlayingCard card : suitedDeck) {
+        grid.add(card.getDisplayObject(), col, row);
+        col++;
+      }
+      col = 0;
+      row++;
     }
     return grid;
   }
