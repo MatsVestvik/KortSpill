@@ -10,7 +10,7 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
 
-    Card card = new Card(1, 'C');
+    Card card = new Card(11, 'C');
     card.createDisplayObject(5);
     Scene scene = new Scene(card.getDisplayObject());
     stage.setScene(scene);

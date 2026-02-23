@@ -12,6 +12,5 @@ public class Load {
 
     ImageView imageView = new ImageView(new Image(path, height * ratio, height, true, false));
     return imageView;
-
   }
 }

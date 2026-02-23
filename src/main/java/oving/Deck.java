@@ -11,6 +11,7 @@ public class Deck implements Display {
 
   public Deck(ArrayList<Card> cards, int scale) {
     this.cards = cards;
+
     createDisplayObject(scale);
     createHoverDisplayObject(scale);
   }

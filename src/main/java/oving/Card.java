@@ -7,6 +7,8 @@ import javafx.geometry.VPos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 
 public class Card implements Display {
 
@@ -51,20 +53,22 @@ public class Card implements Display {
   @Override
   public void createDisplayObject(int scale) {
     GridPane gridPane = new GridPane();
+    RowConstraints row1 = new RowConstraints();
+    row1.setPercentHeight(5);
+    gridPane.getRowConstraints().add(row1);
+
     paperVisual = Load.loadImageView("card.png", 35 * scale);
     faceVisual = Load.loadImageView("numbers/" + face + ".png", 7 * scale);
     suitVisual = Load.loadImageView("symbol/" + suit + ".png", 11 * scale);
 
-    gridPane.add(paperVisual, 0, 0, 1, 2);
-    gridPane.add(faceVisual, 0, 0);
-    gridPane.add(suitVisual, 0, 1);
+    gridPane.add(paperVisual, 0, 0, 1, 3);
 
-    GridPane.setHalignment(faceVisual, HPos.CENTER);
-    GridPane.setValignment(faceVisual, VPos.CENTER);
+    StackPane faceStack = new StackPane(faceVisual);
+    StackPane suitStack = new StackPane(suitVisual);
 
-    // Center the suitVisual in its cell
-    GridPane.setHalignment(suitVisual, HPos.CENTER);
-    GridPane.setValignment(suitVisual, VPos.CENTER);
+    gridPane.add(faceStack, 0, 1);
+    gridPane.add(suitStack, 0, 2);
+
     displayObject = gridPane;
   }
 
