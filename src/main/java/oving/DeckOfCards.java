@@ -76,6 +76,14 @@ public class DeckOfCards {
     return first;
   }
 
+  public ArrayList<PlayingCard> drawFive() {
+    ArrayList<PlayingCard> five = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+      five.add(draw());
+    }
+    return five;
+  }
+
   public void shuffle() {
     Collections.shuffle(deck);
   }

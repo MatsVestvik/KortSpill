@@ -8,23 +8,19 @@ public class Game {
   private DeckOfCards deck;
   private Hand hand;
   private VBox elements;
+  private ImageView deckStack;
 
   public Game(DeckOfCards deck) {
     this.deck = deck;
     this.hand = new Hand();
+    deckStack = deck.getBack();
 
-    createElements();
-  }
-
-  private void createElements() {
     elements = new VBox();
-    ImageView back = deck.getBack();
-    back.setOnMouseClicked(e -> {
-      drawCard();
+    elements.getChildren().addAll(deckStack, hand.getDisplayObject(), hand.getScoreVisual());
+    deckStack.setOnMouseClicked(e -> {
+      hand.clearHand();
+      hand.addFiveCards(deck.drawFive());
     });
-
-    elements.getChildren().addAll(back, hand.getDisplayObject(), hand.getScoreVisual());
-
   }
 
   public void drawCard() {

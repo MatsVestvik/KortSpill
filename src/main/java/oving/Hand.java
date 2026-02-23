@@ -39,9 +39,8 @@ public class Hand {
     if (scoreVisual != null && scoreVisual.getParent() != null) {
       // Replace the old score visual with the new one in its parent
       ((javafx.scene.layout.Pane) scoreVisual.getParent()).getChildren().set(
-        ((javafx.scene.layout.Pane) scoreVisual.getParent()).getChildren().indexOf(scoreVisual),
-        newScoreVisual
-      );
+          ((javafx.scene.layout.Pane) scoreVisual.getParent()).getChildren().indexOf(scoreVisual),
+          newScoreVisual);
     }
     scoreVisual = newScoreVisual;
   }
@@ -56,6 +55,19 @@ public class Hand {
 
   public void addCard(PlayingCard card) {
     cards.add(card);
+    updateHandVisual();
+    calculateScore();
+    createScoreVisual();
+  }
+
+  public void addFiveCards(ArrayList<PlayingCard> cards) {
+    for (PlayingCard card : cards) {
+      addCard(card);
+    }
+  }
+
+  public void clearHand() {
+    cards.clear();
     updateHandVisual();
     calculateScore();
     createScoreVisual();
