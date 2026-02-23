@@ -1,6 +1,12 @@
 package oving;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 public class Card implements Display {
 
@@ -9,6 +15,10 @@ public class Card implements Display {
 
   private GridPane displayObject;
   private GridPane hoverDisplayObject;
+
+  private ImageView faceVisual;
+  private ImageView paperVisual;
+  private ImageView suitVisual;
 
   public Card(int face, char suit) {
     setFace(face);
@@ -24,7 +34,7 @@ public class Card implements Display {
   }
 
   public void setSuit(char suit) {
-    if (suit != 'C' || suit != 'D' || suit != 'H' || suit != 'S') {
+    if (suit != 'C' && suit != 'D' && suit != 'H' && suit != 'S') {
       throw new IllegalArgumentException("sutit must be real");
     }
     this.suit = suit;
@@ -39,8 +49,23 @@ public class Card implements Display {
   }
 
   @Override
-  public void createDisplayObject() {
-    displayObject = new GridPane();
+  public void createDisplayObject(int scale) {
+    GridPane gridPane = new GridPane();
+    paperVisual = Load.loadImageView("card.png", 35 * scale);
+    faceVisual = Load.loadImageView("numbers/" + face + ".png", 7 * scale);
+    suitVisual = Load.loadImageView("symbol/" + suit + ".png", 11 * scale);
+
+    gridPane.add(paperVisual, 0, 0, 1, 2);
+    gridPane.add(faceVisual, 0, 0);
+    gridPane.add(suitVisual, 0, 1);
+
+    GridPane.setHalignment(faceVisual, HPos.CENTER);
+    GridPane.setValignment(faceVisual, VPos.CENTER);
+
+    // Center the suitVisual in its cell
+    GridPane.setHalignment(suitVisual, HPos.CENTER);
+    GridPane.setValignment(suitVisual, VPos.CENTER);
+    displayObject = gridPane;
   }
 
   @Override
@@ -49,7 +74,7 @@ public class Card implements Display {
   }
 
   @Override
-  public void createHoverDisplayObject() {
+  public void createHoverDisplayObject(int scale) {
     hoverDisplayObject = new GridPane();
   }
 

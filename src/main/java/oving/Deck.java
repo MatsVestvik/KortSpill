@@ -9,10 +9,10 @@ public class Deck implements Display {
   private GridPane displayObject;
   private GridPane hoverDisplayObject;
 
-  public Deck(ArrayList<Card> cards) {
+  public Deck(ArrayList<Card> cards, int scale) {
     this.cards = cards;
-    createDisplayObject();
-    createHoverDisplayObject();
+    createDisplayObject(scale);
+    createHoverDisplayObject(scale);
   }
 
   public ArrayList<Card> getCards() {
@@ -20,7 +20,7 @@ public class Deck implements Display {
   }
 
   @Override
-  public void createDisplayObject() {
+  public void createDisplayObject(int scale) {
     displayObject = new GridPane();
   }
 
@@ -30,7 +30,7 @@ public class Deck implements Display {
   }
 
   @Override
-  public void createHoverDisplayObject() {
+  public void createHoverDisplayObject(int scale) {
     hoverDisplayObject = new GridPane();
   }
 
