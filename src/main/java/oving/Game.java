@@ -18,11 +18,17 @@ public class Game {
   private Scene scene;
 
   private Button view;
+  private Button back;
 
   public Game(DeckOfCards deck, Stage stage) {
+
     this.deck = deck;
     this.hand = new Hand();
     deckStack = deck.getBack();
+
+    RemainingCards remainingCards = new RemainingCards();
+    view = remainingCards.getViewButton();
+    back = remainingCards.getBackButton();
 
     elements = new VBox();
     elements.getChildren().addAll(deckStack, hand.getDisplayObject(), hand.getScoreVisual(), view);
@@ -32,11 +38,11 @@ public class Game {
     });
 
     scene = new Scene(elements);
-    RemainingCards remainingCards = new RemainingCards();
-    view = remainingCards.getViewButton();
     view.setOnAction(e -> {
       remainingCardsGrid = remainingCards.createGridPane(deck);
-      scene.setRoot(remainingCardsGrid);
+      VBox items = new VBox();
+      items.getChildren().addAll(remainingCardsGrid, back);
+      scene.setRoot(items);
     });
     stage.setScene(scene);
     stage.show();
