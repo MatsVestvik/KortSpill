@@ -12,11 +12,10 @@ public class Main extends Application {
 
     Card card = new Card(11, 'C');
     card.createDisplayObject(5);
-    Scene scene = new Scene(card.getDisplayObject());
-    StartScreen startScreen = new StartScreen(scene);
-    startScreen.runScene();
-    stage.setScene(scene);
+    ScreenManager screenManager = new ScreenManager(stage);
     stage.show();
+    StartScreen startScreen = new StartScreen(screenManager);
+    screenManager.switchToScreen(startScreen);
   }
 
   public static void main(String[] args) {

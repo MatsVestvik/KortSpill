@@ -2,27 +2,47 @@ package oving;
 
 import java.util.ArrayList;
 
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class StartScreen {
+public class StartScreen extends Screen {
 
   private Scene scene;
+  private Button startGame;
 
-  private Parent root;
-
-  public StartScreen(Scene scene) {
-    Deck deck = new Deck(createStandardDeck(), 5);
-    deck.shuflle();
-    Card card = deck.draw();
-    card.createDisplayObject(5);
-    root = card.getDisplayObject();
-    this.scene = scene;
+  public StartScreen(ScreenManager screenManager) {
+    super(screenManager);
   }
 
-  public void runScene() {
-    scene.setRoot(root);
+  @Override
+  protected Pane createRoot() {
+    return new VBox(10);
+  }
+
+  @Override
+  protected void setupButtons() {
+    Button startButton = new Button("Start Game");
+
+    startButton.setOnAction(e -> {
+      screenManager.switchToScreen(new ShopScreen(screenManager));
+    });
+
+    root.getChildren().addAll(startButton);
+  }
+
+  @Override
+  public void onEnter() {
+  }
+
+  @Override
+  public void onExit() {
   }
 
   public ArrayList<Card> createStandardDeck() {
