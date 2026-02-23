@@ -16,6 +16,7 @@ public class Numbers {
           new Image("numbers/" + unitsDigit + ".png", scale * 5, scale * 7, true, false));
 
       display.getChildren().addAll(tenPlace, unitsPlace);
+      display.setSpacing(5);
 
       return display;
     } else {
@@ -39,6 +40,7 @@ public class Numbers {
       hbox.getChildren()
           .add(new ImageView(new Image("numbers/" + digit + ".png", 5 * scale, 7 * scale, true, false)));
     }
+    hbox.setSpacing(5);
     return hbox;
 
   }

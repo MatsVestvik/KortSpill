@@ -59,13 +59,13 @@ public class PlayingCard {
     // Top-left number
     HBox numberTopLeft = Numbers.getNumber(face, scale);
     StackPane.setAlignment(numberTopLeft, Pos.TOP_LEFT);
-    StackPane.setMargin(numberTopLeft, new Insets(1, 0, 0, 1));
+    StackPane.setMargin(numberTopLeft, new Insets(2 * scale, 0, 0, 2 * scale));
 
     // Bottom-right number (rotated 180 degrees)
     HBox numberBottomRight = Numbers.getNumber(face, scale);
     numberBottomRight.setRotate(180);
     StackPane.setAlignment(numberBottomRight, Pos.BOTTOM_RIGHT);
-    StackPane.setMargin(numberBottomRight, new Insets(0, 1, 1, 0));
+    StackPane.setMargin(numberBottomRight, new Insets(0, 2 * scale, 2 * scale, 0));
 
     ImageView symbol = new ImageView(new Image("symbol/" + suit + ".png", scale * 11, scale * 11, true, false));
 
