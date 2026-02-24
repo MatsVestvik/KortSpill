@@ -42,17 +42,19 @@ public class Deck implements Display {
 
   @Override
   public void createDisplayObject(int scale) {
-    StackPane stack = new StackPane();
+    if (displayObject == null) {
+      displayObject = new StackPane();
+    }
+    displayObject.getChildren().clear();
     int vOffset = 0;
 
     for (Card card : cards) {
       ImageView image = Load.loadImageView("back.png", 35 * scale);
-      stack.getChildren().add(image);
+      displayObject.getChildren().add(image);
       StackPane.setAlignment(image, Pos.TOP_CENTER);
       StackPane.setMargin(image, new Insets(vOffset, 0, 0, 0));
       vOffset += scale * 2;
     }
-    displayObject = stack;
   }
 
   @Override
