@@ -19,6 +19,7 @@ public class Hand implements Display {
     score = 0;
     displayObject = new HBox();
     scale = 5;
+    createScoreDisplayObject();
   }
 
   public Node getDisplayObject() {
@@ -56,7 +57,7 @@ public class Hand implements Display {
       tempScore += card.getFace();
     }
     score = tempScore;
-    createDisplayObject(scale);
+    createScoreDisplayObject();
   }
 
   public void clearHand() {
