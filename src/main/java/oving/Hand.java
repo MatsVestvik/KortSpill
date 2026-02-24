@@ -55,13 +55,22 @@ public class Hand implements Display {
   }
 
   public void scoreHand() {
-    int tempScore = 0;
+    setChips();
+    setMult();
+    score = chips * mult;
+  }
+
+  public void setChips() {
+    int chips = 0;
 
     for (Card card : cards) {
-      tempScore += card.getFace();
+      chips += card.getFace();
     }
-    score = tempScore;
-    createScoreDisplayObject();
+    this.chips = chips;
+  }
+
+  public void setMult() {
+    HandEvaluator.evaluateHand(cards);
   }
 
   public void clearHand() {

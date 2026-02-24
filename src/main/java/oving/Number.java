@@ -24,7 +24,5 @@ public class Number {
 
     hbox.setSpacing(scale);
     return hbox;
-
   }
-
 }

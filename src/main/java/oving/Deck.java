@@ -42,7 +42,6 @@ public class Deck implements Display {
       cards.add(draw());
     }
     return cards;
-
   }
 
   public void shuflle() {
