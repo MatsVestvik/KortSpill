@@ -12,13 +12,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ShopScreen extends Screen {
+public class BattleScreen extends Screen {
 
   private Scene scene;
-  private Button saq;
-  private Button battle;
+  private Button nextShop;
 
-  public ShopScreen(ScreenManager screenManager) {
+  public BattleScreen(ScreenManager screenManager) {
     super(screenManager);
   }
 
@@ -29,17 +28,13 @@ public class ShopScreen extends Screen {
 
   @Override
   protected void setupButtons() {
-    saq = new Button("Save & Quit");
-    battle = new Button("Battle");
+    nextShop = new Button("Next Shop");
 
-    saq.setOnAction(e -> {
-      screenManager.switchToScreen(new StartScreen(screenManager));
-    });
-    battle.setOnAction(e -> {
-      screenManager.switchToScreen(new BattleScreen(screenManager));
+    nextShop.setOnAction(e -> {
+      screenManager.switchToScreen(new ShopScreen(screenManager));
     });
 
-    root.getChildren().addAll(saq, battle);
+    root.getChildren().addAll(nextShop);
   }
 
   @Override
@@ -48,5 +43,16 @@ public class ShopScreen extends Screen {
 
   @Override
   public void onExit() {
+  }
+
+  public ArrayList<Card> createStandardDeck() {
+    ArrayList<Card> deck = new ArrayList<>();
+    char[] suits = { 'C', 'D', 'H', 'S' };
+    for (char suit : suits) {
+      for (int i = 1; i <= 13; i++) {
+        deck.add(new Card(i, suit));
+      }
+    }
+    return deck;
   }
 }
