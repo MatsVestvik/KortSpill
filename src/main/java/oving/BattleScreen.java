@@ -31,11 +31,12 @@ public class BattleScreen extends Screen {
 
   @Override
   protected Pane createRoot() {
+    HBox stacks = new HBox();
     VBox root = new VBox();
     discardPile = hand.getDiscardPile();
 
-    root.getChildren().addAll(drawPile(), hand.getDisplayObject(), hand.getScoreDisplayObject(),
-        discardPile.getDisplayObject());
+    stacks.getChildren().addAll(drawPile(), discardPile.getDisplayObject());
+    root.getChildren().addAll(hand.getDisplayObject(), hand.getScoreDisplayObject(), stacks);
 
     return root;
   }
