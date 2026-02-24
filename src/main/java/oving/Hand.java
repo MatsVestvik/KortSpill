@@ -18,6 +18,7 @@ public class Hand implements Display {
     cards = new ArrayList<>();
     score = 0;
     displayObject = new HBox();
+    scoreDisplayObject = new HBox();
     scale = 5;
     createScoreDisplayObject();
   }
@@ -47,7 +48,8 @@ public class Hand implements Display {
   }
 
   public void createScoreDisplayObject() {
-    scoreDisplayObject = Number.createNumber(score, scale);
+    scoreDisplayObject.getChildren().clear();
+    scoreDisplayObject.getChildren().add(Number.createNumber(score, scale));
   }
 
   public void scoreHand() {
