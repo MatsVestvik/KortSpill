@@ -1,6 +1,7 @@
 package oving;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.Node;
 
 public interface Display {
 

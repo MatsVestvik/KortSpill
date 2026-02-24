@@ -45,10 +45,10 @@ public class ShopScreen extends Screen {
       screenManager.switchToScreen(new BattleScreen(screenManager, deck));
     });
     deckVisual.setOnMouseClicked(e -> {
-      // screenManager.switchToScreen(new RemainingScreen(screenManager, deck));
+      screenManager.switchToScreen(new RemainingScreen(screenManager, deck));
     });
 
-    root.getChildren().addAll(saq, battle);
+    root.getChildren().addAll(saq, battle, deckVisual);
   }
 
   @Override
