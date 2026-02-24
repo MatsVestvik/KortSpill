@@ -14,6 +14,8 @@ public class Hand implements Display {
   private int score;
   private Label scoreDisplayObject;
   private int scale;
+  private int mult;
+  private int chips;
 
   public Hand() {
     cards = new ArrayList<>();
@@ -71,6 +73,13 @@ public class Hand implements Display {
     cards.add(card);
     displayObject.getChildren().add(card.getDisplayObject());
     scoreHand();
+  }
+
+  public void addFiveCard(ArrayList<Card> cards) {
+    clearHand();
+    for (Card card : cards) {
+      addCard(card);
+    }
   }
 
   @Override

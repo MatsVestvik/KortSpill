@@ -36,6 +36,15 @@ public class Deck implements Display {
     return drawnCard;
   }
 
+  public ArrayList<Card> drawFive(int n) {
+    ArrayList<Card> cards = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+      cards.add(draw());
+    }
+    return cards;
+
+  }
+
   public void shuflle() {
     Collections.shuffle(cards);
   }
