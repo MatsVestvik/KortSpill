@@ -11,15 +11,22 @@ public class Hand implements Display {
   private HBox displayObject;
   private HBox hoverDisplayObject;
   private int score;
+  private HBox scoreDisplayObject;
+  private int scale;
 
   public Hand() {
     cards = new ArrayList<>();
     score = 0;
     displayObject = new HBox();
+    scale = 5;
   }
 
   public Node getDisplayObject() {
     return displayObject;
+  }
+
+  public HBox getScoreDisplayObject() {
+    return scoreDisplayObject;
   }
 
   public void createHoverDisplayObject(int scale) {
@@ -38,6 +45,10 @@ public class Hand implements Display {
     return score;
   }
 
+  public void createScoreDisplayObject() {
+    scoreDisplayObject = Number.createNumber(score, scale);
+  }
+
   public void scoreHand() {
     int tempScore = 0;
 
@@ -45,6 +56,7 @@ public class Hand implements Display {
       tempScore += card.getFace();
     }
     score = tempScore;
+    createDisplayObject(scale);
   }
 
   public void clearHand() {
@@ -55,6 +67,7 @@ public class Hand implements Display {
   public void addCard(Card card) {
     cards.add(card);
     displayObject.getChildren().add(card.getDisplayObject());
+    scoreHand();
   }
 
   @Override

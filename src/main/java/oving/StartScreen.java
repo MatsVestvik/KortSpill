@@ -31,6 +31,7 @@ public class StartScreen extends Screen {
   protected void setupButtons() {
     startGame = new Button("Start Game");
     Deck deck = new Deck(createStandardDeck(), scale);
+    deck.shuflle();
 
     startGame.setOnAction(e -> {
       screenManager.switchToScreen(new ShopScreen(screenManager, deck));
