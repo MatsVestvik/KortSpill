@@ -16,9 +16,11 @@ public class Deck implements Display {
   private ArrayList<Card> cards;
   private StackPane displayObject;
   private GridPane hoverDisplayObject;
+  private int scale;
 
   public Deck(ArrayList<Card> cards, int scale) {
     this.cards = cards;
+    this.scale = scale;
 
     createDisplayObject(scale);
     createHoverDisplayObject(scale);
@@ -29,7 +31,9 @@ public class Deck implements Display {
   }
 
   public Card draw() {
-    return cards.getFirst();
+    Card drawnCard = cards.removeFirst();
+    createDisplayObject(scale);
+    return drawnCard;
   }
 
   public void shuflle() {

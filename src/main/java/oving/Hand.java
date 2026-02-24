@@ -15,6 +15,7 @@ public class Hand implements Display {
   public Hand() {
     cards = new ArrayList<>();
     score = 0;
+    displayObject = new HBox();
   }
 
   public Node getDisplayObject() {
@@ -61,7 +62,7 @@ public class Hand implements Display {
     displayObject = new HBox();
 
     for (Card card : cards) {
-      addCard(card);
+      displayObject.getChildren().add(card.getDisplayObject());
     }
   }
 
