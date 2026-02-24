@@ -46,7 +46,7 @@ public class Deck implements Display {
       stack.getChildren().add(image);
       StackPane.setAlignment(image, Pos.TOP_CENTER);
       StackPane.setMargin(image, new Insets(vOffset, 0, 0, 0));
-      vOffset -= scale * 2;
+      vOffset += scale * 2;
     }
     displayObject = stack;
   }

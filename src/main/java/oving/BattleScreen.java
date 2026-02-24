@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -16,15 +17,21 @@ public class BattleScreen extends Screen {
 
   private Button nextShop;
   private Deck deck;
+  private Hand hand;
 
   public BattleScreen(ScreenManager screenManager, Deck deck) {
     this.deck = deck;
+    hand = new Hand();
     super(screenManager);
   }
 
   @Override
   protected Pane createRoot() {
-    return new VBox(10);
+    VBox root = new VBox();
+
+    root.getChildren().addAll(drawPile(), hand.getDisplayObject());
+
+    return root;
   }
 
   @Override
@@ -38,22 +45,21 @@ public class BattleScreen extends Screen {
     root.getChildren().addAll(nextShop);
   }
 
+  public Pane drawPile() {
+    StackPane stack = deck.getDisplayObject();
+
+    stack.setOnMouseClicked(e -> {
+      hand.addCard(deck.draw());
+    });
+
+    return stack;
+  }
+
   @Override
   public void onEnter() {
   }
 
   @Override
   public void onExit() {
-  }
-
-  public ArrayList<Card> createStandardDeck() {
-    ArrayList<Card> deck = new ArrayList<>();
-    char[] suits = { 'C', 'D', 'H', 'S' };
-    for (char suit : suits) {
-      for (int i = 1; i <= 13; i++) {
-        deck.add(new Card(i, suit));
-      }
-    }
-    return deck;
   }
 }

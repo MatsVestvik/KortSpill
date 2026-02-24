@@ -23,7 +23,7 @@ public class ShopScreen extends Screen {
 
   public ShopScreen(ScreenManager screenManager, Deck deck) {
     this.deck = deck;
-    scale = 5;
+    this.scale = 5;
     super(screenManager);
   }
 
