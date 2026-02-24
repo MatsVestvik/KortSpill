@@ -44,6 +44,10 @@ public class Deck implements Display {
     return cards;
   }
 
+  public void addCards(ArrayList<Card> cards) {
+    cards.addAll(cards);
+  }
+
   public void shuflle() {
     Collections.shuffle(cards);
   }

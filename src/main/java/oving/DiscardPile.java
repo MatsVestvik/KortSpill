@@ -17,8 +17,9 @@ public class DiscardPile implements Display {
   private StackPane displayObject;
   private GridPane hoverDisplayObject;
   private int scale;
+  private int vOffset;
 
-  public Deck(ArrayList<Card> cards, int scale) {
+  public DiscardPile(ArrayList<Card> cards, int scale) {
     this.cards = cards;
     this.scale = scale;
 
@@ -30,22 +31,19 @@ public class DiscardPile implements Display {
     return cards;
   }
 
-  public Card draw() {
-    Card drawnCard = cards.removeFirst();
-    createDisplayObject(scale);
-    return drawnCard;
+  public void addCard(Card card) {
+    cards.add(card);
+    GridPane image = card.getDisplayObject();
+    displayObject.getChildren().add(image);
+    StackPane.setAlignment(image, Pos.TOP_CENTER);
+    StackPane.setMargin(image, new Insets(vOffset, 0, 0, 0));
+    vOffset += scale * 2;
   }
 
-  public ArrayList<Card> drawFive(int n) {
-    ArrayList<Card> cards = new ArrayList<>();
-    for (int i = 0; i < n; i++) {
-      cards.add(draw());
+  public void addFiveCard(ArrayList<Card> cards) {
+    for (Card card : cards) {
+      addCard(card);
     }
-    return cards;
-  }
-
-  public void shuflle() {
-    Collections.shuffle(cards);
   }
 
   @Override
@@ -54,10 +52,10 @@ public class DiscardPile implements Display {
       displayObject = new StackPane();
     }
     displayObject.getChildren().clear();
-    int vOffset = 0;
+    vOffset = 0;
 
     for (Card card : cards) {
-      ImageView image = Load.loadImageView("back.png", 35 * scale);
+      GridPane image = card.getDisplayObject();
       displayObject.getChildren().add(image);
       StackPane.setAlignment(image, Pos.TOP_CENTER);
       StackPane.setMargin(image, new Insets(vOffset, 0, 0, 0));

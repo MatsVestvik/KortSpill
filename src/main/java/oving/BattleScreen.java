@@ -1,5 +1,6 @@
 package oving;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javafx.geometry.HPos;
@@ -20,6 +21,7 @@ public class BattleScreen extends Screen {
   private Deck deck;
   private Hand hand;
   private HBox score;
+  private DiscardPile discardPile;
 
   public BattleScreen(ScreenManager screenManager, Deck deck) {
     this.deck = deck;
@@ -30,8 +32,10 @@ public class BattleScreen extends Screen {
   @Override
   protected Pane createRoot() {
     VBox root = new VBox();
+    discardPile = hand.getDiscardPile();
 
-    root.getChildren().addAll(drawPile(), hand.getDisplayObject(), hand.getScoreDisplayObject());
+    root.getChildren().addAll(drawPile(), hand.getDisplayObject(), hand.getScoreDisplayObject(),
+        discardPile.getDisplayObject());
 
     return root;
   }
@@ -41,6 +45,9 @@ public class BattleScreen extends Screen {
     nextShop = new Button("Next Shop");
 
     nextShop.setOnAction(e -> {
+      deck.addCards(discardPile.getCards());
+      deck.addCards(hand.getCards());
+      deck.shuflle();
       screenManager.switchToScreen(new ShopScreen(screenManager, deck));
     });
 
@@ -51,7 +58,8 @@ public class BattleScreen extends Screen {
     StackPane stack = deck.getDisplayObject();
 
     stack.setOnMouseClicked(e -> {
-      hand.addFiveCard(deck.drawFive(5));
+      ArrayList<Card> drawnCards = deck.drawFive(5);
+      hand.addFiveCard(drawnCards);
     });
 
     return stack;
@@ -63,5 +71,7 @@ public class BattleScreen extends Screen {
 
   @Override
   public void onExit() {
+    deck.addCards(hand.getCards());
+    hand.clearHand();
   }
 }

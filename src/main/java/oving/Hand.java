@@ -16,6 +16,7 @@ public class Hand implements Display {
   private int scale;
   private int mult;
   private int chips;
+  private DiscardPile discardPile;
 
   public Hand() {
     cards = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Hand implements Display {
     displayObject = new HBox();
     scoreDisplayObject = new Label();
     scale = 5;
+    discardPile = new DiscardPile(new ArrayList<Card>(), scale);
     createScoreDisplayObject();
   }
 
@@ -32,6 +34,10 @@ public class Hand implements Display {
 
   public Node getScoreDisplayObject() {
     return scoreDisplayObject;
+  }
+
+  public DiscardPile getDiscardPile() {
+    return discardPile;
   }
 
   public void createHoverDisplayObject(int scale) {
@@ -75,6 +81,7 @@ public class Hand implements Display {
   }
 
   public void clearHand() {
+    discardPile.addFiveCard(cards);
     cards.clear();
     displayObject.getChildren().clear();
   }
