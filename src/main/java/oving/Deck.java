@@ -46,6 +46,7 @@ public class Deck implements Display {
 
   public void addCards(ArrayList<Card> cards) {
     this.cards.addAll(cards);
+    createDisplayObject(scale);
   }
 
   public void shuflle() {
