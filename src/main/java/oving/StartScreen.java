@@ -14,10 +14,11 @@ import javafx.stage.Stage;
 
 public class StartScreen extends Screen {
 
-  private Scene scene;
   private Button startGame;
+  private int scale;
 
   public StartScreen(ScreenManager screenManager) {
+    this.scale = 5;
     super(screenManager);
   }
 
@@ -28,13 +29,14 @@ public class StartScreen extends Screen {
 
   @Override
   protected void setupButtons() {
-    Button startButton = new Button("Start Game");
+    startGame = new Button("Start Game");
+    Deck deck = new Deck(createStandardDeck(), scale);
 
-    startButton.setOnAction(e -> {
-      screenManager.switchToScreen(new ShopScreen(screenManager));
+    startGame.setOnAction(e -> {
+      screenManager.switchToScreen(new ShopScreen(screenManager, deck));
     });
 
-    root.getChildren().addAll(startButton);
+    root.getChildren().addAll(startGame);
   }
 
   @Override

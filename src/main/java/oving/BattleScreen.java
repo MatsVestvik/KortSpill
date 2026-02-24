@@ -14,10 +14,11 @@ import javafx.stage.Stage;
 
 public class BattleScreen extends Screen {
 
-  private Scene scene;
   private Button nextShop;
+  private Deck deck;
 
-  public BattleScreen(ScreenManager screenManager) {
+  public BattleScreen(ScreenManager screenManager, Deck deck) {
+    this.deck = deck;
     super(screenManager);
   }
 
@@ -31,7 +32,7 @@ public class BattleScreen extends Screen {
     nextShop = new Button("Next Shop");
 
     nextShop.setOnAction(e -> {
-      screenManager.switchToScreen(new ShopScreen(screenManager));
+      screenManager.switchToScreen(new ShopScreen(screenManager, deck));
     });
 
     root.getChildren().addAll(nextShop);

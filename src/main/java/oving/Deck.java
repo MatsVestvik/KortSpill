@@ -3,11 +3,16 @@ package oving;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 public class Deck implements Display {
   private ArrayList<Card> cards;
-  private GridPane displayObject;
+  private StackPane displayObject;
   private GridPane hoverDisplayObject;
 
   public Deck(ArrayList<Card> cards, int scale) {
@@ -31,11 +36,21 @@ public class Deck implements Display {
 
   @Override
   public void createDisplayObject(int scale) {
-    displayObject = new GridPane();
+    StackPane stack = new StackPane();
+    int vOffset = 0;
+
+    for (Card card : cards) {
+      ImageView image = Load.loadImageView("back.png", 35 * scale);
+      stack.getChildren().add(image);
+      StackPane.setAlignment(image, Pos.TOP_CENTER);
+      StackPane.setMargin(image, new Insets(vOffset, 0, 0, 0));
+      vOffset += scale * 2;
+    }
+    displayObject = stack;
   }
 
   @Override
-  public GridPane getDisplayObject() {
+  public StackPane getDisplayObject() {
     return displayObject;
   }
 
@@ -45,7 +60,7 @@ public class Deck implements Display {
   }
 
   @Override
-  public GridPane getHoverDisplayObject() {
+  public Node getHoverDisplayObject() {
     return hoverDisplayObject;
   }
 }
