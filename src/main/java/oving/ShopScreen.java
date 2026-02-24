@@ -48,7 +48,10 @@ public class ShopScreen extends Screen {
       screenManager.switchToScreen(new RemainingScreen(screenManager, deck));
     });
 
-    root.getChildren().addAll(saq, battle, deckVisual);
+    Emperor emperor = new Emperor();
+    emperor.createDisplayObject(scale);
+
+    root.getChildren().addAll(saq, battle, deckVisual, emperor.getDisplayObject());
   }
 
   @Override
