@@ -58,6 +58,7 @@ public class Hand implements Display {
     setChips();
     setMult();
     score = chips * mult;
+    createScoreDisplayObject();
   }
 
   public void setChips() {
