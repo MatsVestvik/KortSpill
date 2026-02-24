@@ -51,7 +51,7 @@ public class Hand implements Display {
   }
 
   public void createScoreDisplayObject() {
-    scoreDisplayObject.setText("Score: " + score);
+    scoreDisplayObject.setText(String.format("Chips: %d | Mult: %d | Score: %d", chips, mult, score));
   }
 
   public void scoreHand() {
@@ -70,7 +70,7 @@ public class Hand implements Display {
   }
 
   public void setMult() {
-    HandEvaluator.evaluateHand(cards);
+    mult = HandEvaluator.evaluateHand(cards);
   }
 
   public void clearHand() {
