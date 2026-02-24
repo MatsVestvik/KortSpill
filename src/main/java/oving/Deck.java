@@ -45,7 +45,7 @@ public class Deck implements Display {
   }
 
   public void addCards(ArrayList<Card> cards) {
-    cards.addAll(cards);
+    this.cards.addAll(cards);
   }
 
   public void shuflle() {
