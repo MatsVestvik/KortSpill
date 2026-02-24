@@ -3,6 +3,7 @@ package oving;
 import java.util.ArrayList;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class Hand implements Display {
@@ -11,14 +12,14 @@ public class Hand implements Display {
   private HBox displayObject;
   private HBox hoverDisplayObject;
   private int score;
-  private HBox scoreDisplayObject;
+  private Label scoreDisplayObject;
   private int scale;
 
   public Hand() {
     cards = new ArrayList<>();
     score = 0;
     displayObject = new HBox();
-    scoreDisplayObject = new HBox();
+    scoreDisplayObject = new Label();
     scale = 5;
     createScoreDisplayObject();
   }
@@ -27,7 +28,7 @@ public class Hand implements Display {
     return displayObject;
   }
 
-  public HBox getScoreDisplayObject() {
+  public Node getScoreDisplayObject() {
     return scoreDisplayObject;
   }
 
@@ -48,8 +49,7 @@ public class Hand implements Display {
   }
 
   public void createScoreDisplayObject() {
-    scoreDisplayObject.getChildren().clear();
-    scoreDisplayObject.getChildren().add(Number.createNumber(score, scale));
+    scoreDisplayObject.setText("Score: " + score);
   }
 
   public void scoreHand() {
