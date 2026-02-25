@@ -44,6 +44,9 @@ public class Card implements Display {
       throw new IllegalArgumentException("sutit must be real");
     }
     this.suit = suit;
+    if (displayObject != null) {
+      createDisplayObject(5);
+    }
   }
 
   public int getFace() {

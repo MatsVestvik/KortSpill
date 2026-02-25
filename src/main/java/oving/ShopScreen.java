@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -48,14 +49,24 @@ public class ShopScreen extends Screen {
       screenManager.switchToScreen(new RemainingScreen(screenManager, deck));
     });
 
+    HBox shopItems = new HBox();
+
     Emperor emperor = new Emperor();
     emperor.createDisplayObject(scale);
+
+    Moon moon = new Moon();
+    moon.createDisplayObject(scale);
+
+    shopItems.getChildren().addAll(emperor.getDisplayObject(), moon.getDisplayObject());
 
     emperor.getDisplayObject().setOnMouseClicked(e -> {
       screenManager.switchToScreen(new UpgradeScreen(screenManager, emperor, deck));
     });
+    moon.getDisplayObject().setOnMouseClicked(e -> {
+      screenManager.switchToScreen(new UpgradeScreen(screenManager, moon, deck));
+    });
 
-    root.getChildren().addAll(saq, battle, deckVisual, emperor.getDisplayObject());
+    root.getChildren().addAll(saq, battle, deckVisual, shopItems);
   }
 
   @Override
