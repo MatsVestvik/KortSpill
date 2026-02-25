@@ -23,14 +23,17 @@ public class Card implements Display {
   private ImageView suitVisual;
 
   public Card(int face, char suit) {
-    setFace(face);
     setSuit(suit);
+    setFace(face);
     createDisplayObject(5);
   }
 
   public void setFace(int face) {
     if (face <= 13 && face > 0) {
       this.face = face;
+      if (displayObject != null) {
+        createDisplayObject(5);
+      }
     } else {
       throw new IllegalArgumentException("face must be true value");
     }
