@@ -59,8 +59,12 @@ public class BattleScreen extends Screen {
     StackPane stack = deck.getDisplayObject();
 
     stack.setOnMouseClicked(e -> {
-      ArrayList<Card> drawnCards = deck.drawFive(5);
-      hand.addFiveCard(drawnCards);
+      if (deck.getCards().size() < 5) {
+
+      } else {
+        ArrayList<Card> drawnCards = deck.drawFive(5);
+        hand.addFiveCard(drawnCards);
+      }
     });
 
     return stack;
