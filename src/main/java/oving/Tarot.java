@@ -20,6 +20,8 @@ public abstract class Tarot implements Display {
     this.cost = cost;
   }
 
+  public abstract void alterCard(Card card);
+
   @Override
   public void createDisplayObject(int scale) {
     GridPane gridPane = new GridPane();

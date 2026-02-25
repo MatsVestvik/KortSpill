@@ -10,4 +10,9 @@ public class Emperor extends Tarot {
   public Emperor() {
     super("Emperor", "turn a card into a king", 10);
   }
+
+  @Override
+  public void alterCard(Card card) {
+    card.setFace(13);
+  }
 }

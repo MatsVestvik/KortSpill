@@ -51,6 +51,10 @@ public class ShopScreen extends Screen {
     Emperor emperor = new Emperor();
     emperor.createDisplayObject(scale);
 
+    emperor.getDisplayObject().setOnMouseClicked(e -> {
+      screenManager.switchToScreen(new UpgradeScreen(screenManager, emperor, deck));
+    });
+
     root.getChildren().addAll(saq, battle, deckVisual, emperor.getDisplayObject());
   }
 
