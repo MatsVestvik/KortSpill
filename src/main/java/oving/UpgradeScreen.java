@@ -16,6 +16,7 @@ public class UpgradeScreen extends Screen {
   public UpgradeScreen(ScreenManager screenManager, Tarot tarot, Deck deck) {
     this.scale = 5;
     this.tarot = tarot;
+    this.deck = deck;
     super(screenManager);
   }
 
