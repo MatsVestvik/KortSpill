@@ -73,6 +73,15 @@ public class Card implements Display {
     gridPane.add(faceStack, 0, 1);
     gridPane.add(suitStack, 0, 2);
 
+    // Add hover effect
+    gridPane.setOnMouseEntered(e -> {
+      paperVisual.setImage(Load.loadImageView("hover.png", 35 * scale).getImage());
+    });
+
+    gridPane.setOnMouseExited(e -> {
+      paperVisual.setImage(Load.loadImageView("card.png", 35 * scale).getImage());
+    });
+
     displayObject = gridPane;
   }
 
@@ -83,7 +92,24 @@ public class Card implements Display {
 
   @Override
   public void createHoverDisplayObject(int scale) {
-    hoverDisplayObject = new GridPane();
+    GridPane gridPane = new GridPane();
+    RowConstraints row1 = new RowConstraints();
+    row1.setPercentHeight(5);
+    gridPane.getRowConstraints().add(row1);
+
+    paperVisual = Load.loadImageView("hover.png", 35 * scale);
+    faceVisual = Load.loadImageView("numbers/" + face + ".png", 7 * scale);
+    suitVisual = Load.loadImageView("symbol/" + suit + ".png", 11 * scale);
+
+    gridPane.add(paperVisual, 0, 0, 1, 3);
+
+    StackPane faceStack = new StackPane(faceVisual);
+    StackPane suitStack = new StackPane(suitVisual);
+
+    gridPane.add(faceStack, 0, 1);
+    gridPane.add(suitStack, 0, 2);
+
+    displayObject = gridPane;
   }
 
   @Override
