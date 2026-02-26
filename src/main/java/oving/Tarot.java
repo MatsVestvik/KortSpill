@@ -13,11 +13,45 @@ public abstract class Tarot implements Display {
   private GridPane displayObject;
   private GridPane hoverDisplayObject;
   private ImageView paperVisual;
+  private Screen returnScreen;
+  private Deck deck;
+  private ScreenManager screenManager;
 
-  public Tarot(String name, String description, int cost) {
+  public Tarot(String name, String description, int cost, Screen returnScreen, Deck deck, ScreenManager screenManager) {
+    this.returnScreen = returnScreen;
+    this.deck = deck;
+    this.screenManager = screenManager;
     this.name = new Label(name);
     this.description = new Label(description);
     this.cost = cost;
+  }
+
+  public int getCost() {
+    return cost;
+  }
+
+  public Label getName() {
+    return name;
+  }
+
+  public Label getDescription() {
+    return description;
+  }
+
+  public ImageView getPaperVisual() {
+    return paperVisual;
+  }
+
+  public Screen getReturnScreen() {
+    return returnScreen;
+  }
+
+  public Deck getDeck() {
+    return deck;
+  }
+
+  public ScreenManager getScreenManager() {
+    return screenManager;
   }
 
   public abstract void alterCard(Card card);

@@ -28,36 +28,10 @@ public class ShopScreen extends Screen {
     super(screenManager);
   }
 
-  @Override
-  protected Pane createRoot() {
-    return new VBox(10);
-  }
-
-  @Override
-  protected void setupButtons() {
-    saq = new Button("Save & Quit");
-    battle = new Button("Battle");
-    StackPane deckVisual = deck.getDisplayObject();
-
-    saq.setOnAction(e -> {
-      screenManager.switchToScreen(new StartScreen(screenManager));
-    });
-    battle.setOnAction(e -> {
-      screenManager.switchToScreen(new BattleScreen(screenManager, deck));
-    });
-    deckVisual.setOnMouseClicked(e -> {
-      screenManager.switchToScreen(new RemainingScreen(screenManager, deck));
-    });
-
-    HBox shopItems = new HBox();
-
-    Emperor emperor = new Emperor();
-    emperor.createDisplayObject(scale);
-
-    Moon moon = new Moon();
-    moon.createDisplayObject(scale);
-
-    shopItems.getChildren().addAll(emperor.getDisplayObject(), moon.getDisplayObject());
+  private HBox items() {
+    HBox hbox = new HBox();
+    Emperor emperor = new Emperor(new ShopScreen(screenManager, deck), deck, screenManager);
+    Moon moon = new Moon(new ShopScreen(screenManager, deck), deck, screenManager);
 
     emperor.getDisplayObject().setOnMouseClicked(e -> {
       screenManager.switchToScreen(new UpgradeScreen(screenManager, emperor, deck));
@@ -66,7 +40,41 @@ public class ShopScreen extends Screen {
       screenManager.switchToScreen(new UpgradeScreen(screenManager, moon, deck));
     });
 
-    root.getChildren().addAll(saq, battle, deckVisual, shopItems);
+    hbox.getChildren().addAll(emperor.getDisplayObject(), moon.getDisplayObject());
+    return hbox;
+  }
+
+  @Override
+  protected Pane createRoot() {
+    VBox vbox = new VBox();
+    HBox hbox = new HBox();
+
+    StackPane deckVisual = deck.getDisplayObject();
+    deckVisual.setOnMouseClicked(e -> {
+      screenManager.switchToScreen(new RemainingScreen(screenManager, deck));
+    });
+
+    saq = new Button("Save & Quit");
+    battle = new Button("Battle");
+
+    saq.setOnAction(e -> {
+      screenManager.switchToScreen(new StartScreen(screenManager));
+    });
+    battle.setOnAction(e -> {
+      screenManager.switchToScreen(new BattleScreen(screenManager, deck));
+    });
+
+    HBox shopItems = items();
+
+    vbox.getChildren().addAll(saq, battle, shopItems);
+
+    hbox.getChildren().addAll(vbox, deckVisual);
+
+    return hbox;
+  }
+
+  @Override
+  protected void setupButtons() {
   }
 
   @Override

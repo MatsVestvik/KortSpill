@@ -7,8 +7,8 @@ import javafx.scene.layout.StackPane;
 
 public class Emperor extends Tarot {
 
-  public Emperor() {
-    super("Emperor", "turn a card into a king", 10);
+  public Emperor(Screen returnScreen, Deck deck, ScreenManager screenManager) {
+    super("Emperor", "turn a card into a king", 10, returnScreen, deck, screenManager);
   }
 
   @Override

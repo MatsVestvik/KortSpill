@@ -7,8 +7,8 @@ import javafx.scene.layout.StackPane;
 
 public class Moon extends Tarot {
 
-  public Moon() {
-    super("Moon", "turn card into club", 1);
+  public Moon(Screen returnScreen, Deck deck, ScreenManager screenManager) {
+    super("Moon", "turn card into club", 1, returnScreen, deck, screenManager);
   }
 
   @Override
