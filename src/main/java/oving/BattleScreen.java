@@ -24,9 +24,10 @@ public class BattleScreen extends Screen {
   private DiscardPile discardPile;
 
   public BattleScreen(ScreenManager screenManager, Deck deck) {
+    super(screenManager);
     this.deck = deck;
     hand = new Hand();
-    super(screenManager);
+    init();
   }
 
   @Override

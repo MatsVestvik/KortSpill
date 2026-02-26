@@ -23,15 +23,19 @@ public class ShopScreen extends Screen {
   private Deck deck;
 
   public ShopScreen(ScreenManager screenManager, Deck deck) {
+    super(screenManager);
     this.deck = deck;
     this.scale = 5;
-    super(screenManager);
+    init();
   }
 
   private HBox items() {
     HBox hbox = new HBox();
-    Emperor emperor = new Emperor(new ShopScreen(screenManager, deck), deck, screenManager);
-    Moon moon = new Moon(new ShopScreen(screenManager, deck), deck, screenManager);
+    Emperor emperor = new Emperor(this, deck, screenManager);
+    Moon moon = new Moon(this, deck, screenManager);
+
+    emperor.createDisplayObject(scale);
+    moon.createDisplayObject(scale);
 
     emperor.getDisplayObject().setOnMouseClicked(e -> {
       screenManager.switchToScreen(new UpgradeScreen(screenManager, emperor, deck));

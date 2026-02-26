@@ -18,9 +18,10 @@ public class RemainingScreen extends Screen {
   private Deck deck;
 
   public RemainingScreen(ScreenManager screenManager, Deck deck) {
+    super(screenManager);
     this.deck = deck;
     this.scale = 5;
-    super(screenManager);
+    init();
   }
 
   @Override

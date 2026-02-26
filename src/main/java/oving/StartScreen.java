@@ -18,8 +18,9 @@ public class StartScreen extends Screen {
   private int scale;
 
   public StartScreen(ScreenManager screenManager) {
-    this.scale = 5;
     super(screenManager);
+    this.scale = 5;
+    init();
   }
 
   @Override

@@ -14,10 +14,11 @@ public class UpgradeScreen extends Screen {
   private Deck deck;
 
   public UpgradeScreen(ScreenManager screenManager, Tarot tarot, Deck deck) {
+    super(screenManager);
     this.scale = 5;
     this.tarot = tarot;
     this.deck = deck;
-    super(screenManager);
+    init();
   }
 
   @Override

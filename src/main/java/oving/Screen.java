@@ -10,6 +10,9 @@ public abstract class Screen {
 
   public Screen(ScreenManager screenManager) {
     this.screenManager = screenManager;
+  }
+
+  protected final void init() {
     this.root = createRoot();
     this.scene = new Scene(root, 800, 600);
     setupButtons();
