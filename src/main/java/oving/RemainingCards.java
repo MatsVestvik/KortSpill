@@ -1,6 +1,7 @@
 package oving;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -23,6 +24,7 @@ public class RemainingCards {
     int row = 0;
     for (char suit : suits) {
       ArrayList<PlayingCard> suitedDeck = deck.getCardsOfSuit(suit);
+      suitedDeck.sort(Comparator.comparingInt(PlayingCard::getFace));
       for (PlayingCard card : suitedDeck) {
         grid.add(card.getDisplayObject(), col, row);
         col++;
